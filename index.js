@@ -1,6 +1,6 @@
 'use strict';
 
-var ƒ = require('flavor-js');
+var _ = require('lodash');
 var spritesheet = require('spritesheet-js');
 
 // Documentation for Brunch plugins:
@@ -18,10 +18,11 @@ function SpritesheetJSBrunchPlugin(config) {
       algorithm: 'growing-binpacking',
       padding: 0,
       sort: 'none',
-    },
+    };
 
     // Replace 'plugin' with your plugin's name;
-    this.config = this.defaults.inherit(true, config.plugins.spritesheet || {});
+    this.config = _.merge(true, this.defaults, config.plugins.spritesheet || {});
+    // this.config = config.plugins.spritesheet;
   };
 
   // Optional
@@ -51,7 +52,7 @@ function SpritesheetJSBrunchPlugin(config) {
   // files: [File] => null
   // Executed when each compilation is finished.
   // Examples: Hot-reload (send a websocket push).
-  SpritesheetJSBrunchPlugin.prototype.onCompile = function(files) {
+  SpritesheetJSBrunchPlugin.prototype.preCompile = function() {
     spritesheet(this.config.files, this.config, function (err) {
       if (err) throw err;
 
