@@ -1,14 +1,13 @@
 'use strict';
 
-import spritesheet from 'spritesheet-js';
-import ƒ from 'flavor-js';
+var ƒ = require('flavor-js');
+var spritesheet = require('spritesheet-js');
 
 // Documentation for Brunch plugins:
 // http://brunch.io/docs/plugins
 
 // Remove everything your plugin doesn't need.
-class BrunchPlugin {
-  constructor(config) {
+function SpritesheetJSBrunchPlugin(config) {
     this.defaults = {
       format: 'json',
       name: 'spritesheet',
@@ -22,8 +21,8 @@ class BrunchPlugin {
     },
 
     // Replace 'plugin' with your plugin's name;
-    this.config = this.defaults.inherit(true, config.plugins['spritesheet-js'] || {});
-  }
+    this.config = this.defaults.inherit(true, config.plugins.spritesheet || {});
+  };
 
   // Optional
   // Specifies additional files which will be included into build.
@@ -52,13 +51,13 @@ class BrunchPlugin {
   // files: [File] => null
   // Executed when each compilation is finished.
   // Examples: Hot-reload (send a websocket push).
-  preCompile() {
+  SpritesheetJSBrunchPlugin.prototype.onCompile = function(files) {
     spritesheet(this.config.files, this.config, function (err) {
       if (err) throw err;
 
       console.log('spritesheet successfully generated');
     });
-  }
+  };
 
   // files: [File] => null
   // Executed when each compilation is finished.
@@ -68,14 +67,13 @@ class BrunchPlugin {
   // Allows to stop web-servers & other long-running entities.
   // Executed before Brunch process is closed.
   // teardown() {}
-}
 
 // Required for all Brunch plugins.
-BrunchPlugin.prototype.brunchPlugin = true;
+SpritesheetJSBrunchPlugin.prototype.brunchPlugin = true;
 
 // Required for compilers, linters & optimizers.
 // 'javascript', 'stylesheet' or 'template'
-// BrunchPlugin.prototype.type = 'javascript';
+SpritesheetJSBrunchPlugin.prototype.type = 'precompilers';
 
 // Required for compilers & linters.
 // It would filter-out the list of files to operate on.
@@ -87,4 +85,4 @@ BrunchPlugin.prototype.brunchPlugin = true;
 // 'production' for optimizers.
 // BrunchPlugin.prototype.defaultEnv = 'production';
 
-module.exports = BrunchPlugin;
+module.exports = SpritesheetJSBrunchPlugin;
