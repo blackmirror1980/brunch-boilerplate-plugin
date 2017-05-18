@@ -1,13 +1,28 @@
 'use strict';
 
+import spritesheet from 'spritesheet-js';
+import ƒ from 'flavor-js';
+
 // Documentation for Brunch plugins:
 // http://brunch.io/docs/plugins
 
 // Remove everything your plugin doesn't need.
 class BrunchPlugin {
   constructor(config) {
+    this.defaults = {
+      format: 'json',
+      name: 'spritesheet',
+      trim: true,
+      square: false,
+      powerOfTwo: false,
+      divisibleByTwo: false,
+      algorithm: 'growing-binpacking',
+      padding: 0,
+      sort: 'none',
+    },
+
     // Replace 'plugin' with your plugin's name;
-    this.config = config.plugins.plugin || {};
+    this.config = this.defaults.inherit(true, config.plugins['spritesheet-js'] || {});
   }
 
   // Optional
@@ -33,6 +48,17 @@ class BrunchPlugin {
   // Usually called to minify or optimize the end-result.
   // Examples: UglifyJS, CSSMin.
   // optimize(file) { return Promise.resolve({data: minify(file.data)}); }
+
+  // files: [File] => null
+  // Executed when each compilation is finished.
+  // Examples: Hot-reload (send a websocket push).
+  preCompile() {
+    spritesheet(this.config.files, this.config, function (err) {
+      if (err) throw err;
+
+      console.log('spritesheet successfully generated');
+    });
+  }
 
   // files: [File] => null
   // Executed when each compilation is finished.

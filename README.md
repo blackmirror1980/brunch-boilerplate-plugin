@@ -1,15 +1,15 @@
-## {{NAME}}-brunch
-Adds {{DESCRIPTION}} support to
+## spritesheet-js-brunch
+Adds spritesheet-js support to
 [brunch](http://brunch.io).
 
 ## Usage
-Install the plugin via npm with `npm install --save-dev {{NAME}}-brunch`.
+Install the plugin via npm with `npm install --save-dev spritesheet-js-brunch`.
 
 Or, do manual install:
 
-* Add `"{{NAME}}-brunch": "~x.y.z"` to `package.json` of your brunch app.
+* Add `"spritesheet-js-brunch": "~x.y.z"` to `package.json` of your brunch app.
 * If you want to use git version of plugin, use the GitHub URI
-`"{{NAME}}-brunch": "brunch/{{NAME}}-brunch"`.
+`"spritesheet-js-brunch": "brunch/spritesheet-js-brunch"`.
 
 ## License
 

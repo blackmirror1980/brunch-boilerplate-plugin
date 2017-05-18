@@ -1,18 +1,20 @@
 {
-  "name": "name-brunch",
-  "version": "1.0.0",
-  "description": "Adds {{DESCRIPTION}} support to brunch.",
-  "author": "Paul Miller (http://paulmillr.com/)",
-  "homepage": "https://github.com/brunch/{{NAME}}-brunch",
+  "name": "spritesheet-js-brunch",
+  "version": "0.0.1",
+  "description": "Adds spritesheet-js support to brunch.",
+  "author": "Black Mirror",
+  "homepage": "https://github.com/blackmirror1980/spritesheet-js-brunch",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:brunch/{{NAME}}-brunch.git"
+    "url": "git@github.com:blackmirror1980/spritesheet-js-brunch.git"
   },
   "scripts": {
     "test": "eslint index.js && mocha"
   },
   "dependencies": {
+    "flavor-js": "^0.3.0",
+    "spritesheet-js": "^1.2.6"
   },
   "devDependencies": {
     "chai": "^3",
